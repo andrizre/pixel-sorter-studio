@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixel Sorter Studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Pixel Sorter Studio</h1>
+  <p>Interactive pixel-sorting glitch art — load an image or use the built-in generator</p>
+</header>
+
+<main>
+  <aside id="controls">
+    <section>
+      <h2>Source</h2>
+      <input type="file" id="fileInput" accept="image/*">
+      <button id="genBtn">Generate Procedural Image</button>
+      <div class="seed-row">
+        <label>Seed <input type="number" id="seedInput" value="1337" min="0"></label>
+        <button id="regenBtn">↻</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Sort Parameters</h2>
+      <label>Mode
+        <select id="modeSelect">
+          <option value="brightness">Brightness</option>
+          <option value="lightness">Lightness (HSL)</option>
+          <option value="hue">Hue</option>
+          <option value="saturation">Saturation</option>
+          <option value="red">Red channel</option>
+          <option value="green">Green channel</option>
+          <option value="blue">Blue channel</option>
+        </select>
+      </label>
+      <label>Direction
+        <select id="dirSelect">
+          <option value="h">Horizontal</option>
+          <option value="v">Vertical</option>
+        </select>
+      </label>
+      <label>Threshold range <span id="thrVal">0.10 – 0.85</span>
+        <input type="range" id="thrMin" min="0" max="100" value="10">
+        <input type="range" id="thrMax" min="0" max="100" value="85">
+      </label>
+      <label>Interval span <span id="intVal">100%</span>
+        <input type="range" id="interval" min="5" max="100" value="100">
+      </label>
+      <label>Gap noise <span id="noiseVal">0</span>
+        <input type="range" id="noise" min="0" max="100" value="0">
+      </label>
+      <label><input type="checkbox" id="reverse" checked> Reverse sort (dark→light)</label>
+    </section>
+
+    <section>
+      <h2>Blend</h2>
+      <label>Mix with original <span id="mixVal">100%</span>
+        <input type="range" id="mix" min="0" max="100" value="100">
+      </label>
+      <button id="sortBtn" class="primary">▶ Sort</button>
+      <button id="animBtn">⟳ Auto-evolve</button>
+      <button id="resetBtn">Reset</button>
+      <button id="saveBtn">💾 Save PNG</button>
+    </section>
+  </aside>
+
+  <div id="stage">
+    <canvas id="canvas"></canvas>
+    <div id="status"></div>
+  </div>
+</main>
+
+<script src="sorter.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
